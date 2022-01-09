@@ -1,0 +1,27 @@
+Miguel de la Cruz Cabello
+COMS 104 A
+Professor Scott Abbey
+04/15/2020
+
+								Built-in sorting algorithm used by C++
+
+For this assignment I chose to search information about the sorting algorithm used by C++. 
+C++ uses a function called qsort that is named after the sorting algorithm QuickSort. QuickSort was developed by a British computer scientist named Tony Hoare 
+in 1959 while he was working on a project on machine translation for the National Physical Laboratory in the Soviet Union. QuickSort gained widespread adoption 
+appearing in Unix, C++  standard library, and in the reference implementation of Java. And in 2009, QuickSort was chosen as a new sorting algorithm 
+in Oracle's Java 7 library. 
+
+This type of algorithm is usually faster than any other of its competitors. 
+In this way, most lists can be sorted very quickly since it generally has an average performance of O(n log n). In the worst scenario, 
+the performance is of O(n^2).
+	
+QuickSort is a recursive comparison sort whose process is the following: It picks an element as pivot and partitions the given array around the picked pivot. 
+So basically, first it divides the input array into two sub-arrays (one for small elements  and another for higher elements) 
+and then sorts the sub-arrays recursively. Also, the qsort function achieves polymorphism by taking a function pointer to a three-way-comparison function.
+
+Bibliography
+	Wikipedia: QuickSort 
+https://en.wikipedia.org/wiki/Quicksort#Algorithm. Published on 03/05/2015. Accessed on 04/13/2020.
+
+	What algorithm do popular C++ compilers use for std::sort and std::stable_sort?
+https://www.quora.com/What-algorithm-do-popular-C++-compilers-use-for-std-sort-and-std-stable_sort. Accessed on 04/13/2020.

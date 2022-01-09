@@ -1,0 +1,329 @@
+COMS 104 - Fall 2020
+Assignment 08
+Due Friday 3 April 2020
+Author: Miguel de la Cruz Cabello
+
+Task: *Design* a vending machine program.
+
+In Chapter 12 we are focusing on design, rather than implementation.  Instead
+of writing code, you will perform design steps.
+
+The final deliverable will be a text file (this one) containing the results.
+You will not write a working program. This is similar to a lab notebook --
+you fill in the parts where I ask you to fill things in. Then turn in the
+final product at the end.
+
+This document has some parts of the design process already done for you. Your
+job is to fill in the missing details, following the pattern introduced in
+chapter 12. This process should be similar to Worked Example 12.1.
+
+The places you need to fill in details will be marked [like this]. Be as
+thorough and clear as possible in each step.
+
+----
+
+Step 1: Requirements
+
+The vending machine will function similar to the vending machines found on campus:
+
+*Components*
+
+- There are products inside the vending machine.
+- There are buttons on the vending machine allowing user input.
+- There is a slot to put money into the machine.
+
+[
+- There is a refrigeration system that keeps products cool.
+- There is a rotating system that returns the selected product.
+- There is a slot to get the product.
+- There is a slot to get your change.
+- The machine accepts just coins.
+- There should be a bottom that resets the machine and another that lets the user to cancel the product.
+- The machine won't accept the request if it doesn't have enough change.
+- The machine won't return the product if it is not fully paid.
+- The machine won't return a product that is sold out.
+- The machine can hold more than one request at the same time.
+- The machine must keep track of the inventory.
+- Stats for sales need to be printed to know what costumers like the most.
+
+Please add _at least_ 3 additional requirements describing the components of
+the machine, similar to these. 
+]
+
+*Operation*
+
+- When the customer puts money into the machine, the display updates the total.
+
+[
+- The machine needs to accept coins of 1,5,10,25 cents.
+- The machine allows the user to select the product.
+- The machine allows the user to cancel the request and get the money back.
+- The machine returns the product selected and the remaining change (if there is any).
+
+Please add _at least_ 2 additional requirements for what happens when a user
+interacts with the vending machine.]
+
+[
+- There has to be a "reset operation" in the machine that the supplier (or owner of the machine) can use to re-start the machine when there is any problem.
+- The refrigeration and rotating system should be in this section.
+- If the machine doesn't have enough change, it won't accept the request, and it will return the money back to the buyer.
+- If the product is not fully paid, the machine won't return the product.
+- If the product requested is sold out, the machine won't return any product.
+- The machine needs to be able to hold more than one request at the same time.
+- The machine keeps track of the inventory.
+- Print stats for sales.
+
+Also describe any other features about the vending machine that you think
+would be relevant to implementing it.]
+
+----
+
+Step 2: Discovering nouns
+
+Now that we have established what the vending machine will do, it is time to
+discover the classes that we will use. Look at the requirements list you made
+in step 1, and make a list of all the nouns. Even if you don't think it would
+be a class, add it to the list:
+
+- product
+- vending machine
+
+[
+- refrigeration
+- rotating
+- money/bill
+- reset
+- not full paid
+- sold out
+- not enough change
+- bucket (hold request)
+- stats
+- change
+- cancel request
+- track inventory
+
+List the rest of the nouns from the requirements]
+
+----
+
+Step 3: Turn some nouns into classes
+
+Only a portion of these nouns will actually be used as classes.  We can simulate
+the CRC method by listing the class name, responsibilities, and collaborators:
+
+-----------
+Product
+-----------
+get price
+get name
+-----------
+Used by VendingMachine
+-----------
+
+--------------
+VendingMachine
+--------------
+manage state
+accept money
+[
+reset
+insertCoin
+printStats
+notFullPaid (maybe this method could be coded as a different method and then, be inserted in the vending machine class)
+notEnoughChange (maybe this method could be coded as a different method and then, be inserted in the vending machine class)
+soldOut (maybe this method could be coded as a different method and then, be inserted in the vending machine class)
+getChange
+cancelRequest
+trackInventory(but this could be another class, and the be inserted in the VendingMachine)
+
+there are probably more here]
+--------------
+Product
+[
+getName
+getPrice
+addItem
+addPrice
+
+definitely more collaborators]
+--------------
+
+[
+--------------
+Bucket
+public Bucket
+getFirst
+getSecond
+-------------
+Coin
+public Coin
+getDenomination
+------------
+
+Finish the responsibilities and collaborators for the Product and VendingMachine
+classes, then add additional cards for at least 2 other classes selected from the nouns
+in step 2. You may need to retry this step several times until you get a satisfactory
+result.]
+
+----
+
+Step 4: Document classes
+
+Now that you have discovered the classes you will use, it is time to document them.
+We will not actually implement the code. Instead, we will make the shell of some
+classes and write method signatures with javadoc comments.
+
+/**
+    A product sold in a vending machine.
+*/
+public class Product
+{
+    private int price;
+    private String name;
+
+    /**
+        Constructs a product with the given name and price.
+        @param name the name of the product
+        @param price the price of the product in cents
+    */
+    public Product(String name, int price) {}
+
+    /**
+        Returns the price of the product.
+    */
+    public int getPrice() {}
+
+    /**
+        Returns the name of the product.
+    */
+    public String getName() {}
+}
+
+
+[
+/**
+    A class that shows the work of a vending machine.
+*/
+public class VendingMachine
+{
+    private double cuerrentBalance;
+    private double change;
+    private double totalSales;
+  
+    /**
+	A class that adds the coin inserted to the current value in the machine.
+	@param: coin inserted
+    */
+    public void insertCoin(Coin) {}
+ 
+    public getChange() {}
+    /**
+	Returns the change for a product.
+    */
+    
+    public notFullyPaid()
+    /**
+	Returns a message and the remaining amount that needs to be paid.
+    */
+
+    public notEnoughCange()
+    /** 
+	Returns a message saying the machine does not have enough change.
+    */
+
+    public soldOut()
+    /**
+	Returns a message saying the product requested is sold out.
+    */
+
+    public void cancelRequest()
+    /**
+	Cancels the request and refunds the user.
+    */
+
+    public void reset()
+    /**	
+	Resets the vending machine.
+    */
+
+    public void printStats()
+    /**
+	Prints the total sales of the vending machine.
+
+
+/**
+    A class that determines the coins supported by the machine.  
+*/
+public class Coin
+{
+    /**
+        Global variables for penny(1), nickle(5), dime(10), quarter(25);
+    */
+    
+    private int denomination;
+
+    /**
+        A class that constructs the denomination of the coin.
+	@param: denomination of the coin.
+    */    
+    public Coin(int denomination) {}
+    
+    public int getDenomination() {}
+    /*
+        Returns the denomination of the coin.
+    */
+}
+
+/**
+    A class that lets the vending machine hold two different objects.
+*/
+public class Bucket
+{
+    private int first;
+    private int second;
+
+    /**
+	A class that constructs two requests.
+    */
+    public Bucket(int first, int second) {}
+
+    public int getFirst() {}
+    /**
+        Returns the first request.
+    */
+
+    public int getSecond() {}
+    /**
+	Returns the second request.
+    */
+}
+
+
+Complete the method signatures and javadoc comments for the VendingMachine
+class *and at least two others*.]
+
+
+----
+
+Step 5 would be to implement the actual code, but you DO NOT HAVE TO DO IT. Instead,
+look back on what you have created and describe it with some of the terms we have
+learned in this chapter like coupling and cohesion.
+
+[
+I believe my code looks good for cohesion because I showed the porpuse of each specific class in a well design format, and they refer to
+the single concept they represent. Talking about coupling; every class is related to each class and there is relationshp between them, for example, the the Bucket, 
+Coin, and Product classes are connected to the vending machine. So I believe the code looks for coupling.
+The parts I believe they work well are the Bucket and Coin classes plus some methods in the VendingMachine class like 
+the cancelRequest, reset, and printStats. The parts I think need improvement are the soldOut, notFullyPaid, and notEnoughChange methods
+because I think they need to be coded as diferent classes and then extended to the main method. Also, I have some trouble in where to put 
+the refrigerating and rotating system. In my opinion, these systems belongs to a different section of the vending machine, so that is why
+I decided to not put them in the VendingMachine class.
+
+Describe how your design looks for coupling and cohesion. Also list what parts of
+the result you think worked well and any parts that you think might have room for
+improvement.]
+
+----
+
+When you are done, turn in the final file that includes steps 1-4 with all parts in
+[square brackets] completely finished.
